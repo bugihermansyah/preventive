@@ -41,19 +41,18 @@ class Monitoring extends Component
         $totalLocation = Location::all()->count();
 
         return view('livewire.monitoring', [
-            'locations' => Location::all()->count(),
             'staffs' => DB::table('users')
-                            ->join('model_has_roles','model_has_roles.model_id','=','users.id')
-                            ->join('roles','roles.id','=','users.id')
-                            ->where('roles.name','staff')
                             ->select('users.name',
                                     DB::raw('(select count(*) from locations
                                         where locations.user_id = users.id
                                         AND locations.deleted_at is NULL) as staff_locations'),
                                     DB::raw('(select count(*) from checklists
                                         where checklists.user_id = users.id
-                                        AND MONTH(checklists.date) = MONTH(now())) as staff_currents')
-                            )->get(),
+                                        AND MONTH(checklists.date) = 5) as staff_currents'))
+                            ->join('model_has_roles','model_has_roles.model_id','=','users.id')
+                            ->join('roles','roles.id','=','model_has_roles.role_id')
+                            ->where('roles.name','staff')
+                            ->get(),
 
             'checklists' => DB::table('checklists')
                             ->select('users.name as user_name','locations.name','checklists.date','checklists.created_at')
