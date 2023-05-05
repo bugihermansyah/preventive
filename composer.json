@@ -9,7 +9,7 @@
         "3x1io/filament-user": "^1.1",
         "awcodes/filament-versions": "^1.1",
         "bezhansalleh/filament-shield": "^2.4",
-        "filament/filament": "^2.0",
+        "filament/filament": "2.17.32",
         "filament/spatie-laravel-media-library-plugin": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.0",
