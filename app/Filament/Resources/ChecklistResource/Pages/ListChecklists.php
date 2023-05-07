@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -24,10 +25,14 @@ class ListChecklists extends ListRecords
 
     protected function getTableQuery(): Builder
     {
-        if (User::with('head') == 'head'){
-            return Checklist::all();
-        }else{
-            return Checklist::where('user_id', auth()->user()->id);
+        if (auth()->user()->hasRole('super_admin'))
+        {
+            return Checklist::query();
+        }
+
+        if (auth()->user()->hasRole('staff'))
+        {
+            return Checklist::query()->where('user_id', auth()->user()->id);
         }
     }
 }
