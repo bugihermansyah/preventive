@@ -35,8 +35,9 @@ class ChecklistResource extends Resource
                         ->schema([
                             Forms\Components\Select::make('location_id')
                                 ->label('Location')
-                                ->options(Location::where('user_id', auth()->user()->id)
-                                                            ->pluck('name', 'locations.id'))
+                                // ->options(Location::where('user_id', auth()->user()->id)
+                                //                             ->pluck('name', 'locations.id'))
+                                ->options(Location::pluck('name', 'locations.id'))
                                 ->searchable(),
                             Forms\Components\Hidden::make('user_id')
                                 ->default(auth()->user()->id)
@@ -104,6 +105,7 @@ class ChecklistResource extends Resource
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
             ])
+            ->defaultSort('created_at')
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
             ])
