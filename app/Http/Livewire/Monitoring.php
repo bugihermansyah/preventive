@@ -58,6 +58,7 @@ class Monitoring extends Component
                             ->select('users.name as user_name','locations.name','checklists.date','checklists.created_at')
                             ->join('locations','locations.id','=','checklists.location_id')
                             ->join('users','checklists.user_id','=','users.id')
+                            ->whereNull('checklists.deleted_at')
                             ->latest('checklists.created_at')
                             ->limit('10')
                             ->get(),

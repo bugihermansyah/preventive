@@ -49,7 +49,7 @@
               </div>
             </div>
           </div>
-          
+
           <!-- card2 -->
           <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
@@ -192,8 +192,8 @@
                     <tr>
                       <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Staff</th>
                       <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Location</th>
-                      <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Time</th>
-                      <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Employed</th>
+                      <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Visit</th>
+                      <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Updated</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -210,10 +210,10 @@
                         <p class="mb-0 text-xs font-semibold leading-tight dark:text-white">{{ $checklist->name}}</p>
                       </td>
                       <td class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <span class="text-xs font-semibold leading-tight dark:text-white text-slate-400">{{ $checklist->created_at }}</span>
+                        <span class="text-xs font-semibold leading-tight dark:text-white text-slate-400">{{ $checklist->date }}</span>
                       </td>
                       <td class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <span class="text-xs font-semibold leading-tight dark:text-white text-slate-400">{{ $checklist->date }}</span>
+                        <span class="text-xs font-semibold leading-tight dark:text-white text-slate-400">{{ \Carbon\Carbon::parse($checklist->created_at)->diffForHumans() }}</span>
                       </td>
                     </tr>
                     @endforeach
