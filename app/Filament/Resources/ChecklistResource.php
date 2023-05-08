@@ -63,7 +63,8 @@ class ChecklistResource extends Resource
                                 ->enableReordering()
                                 ->preserveFilenames()
                                 ->removeUploadedFileButtonPosition('right')
-                                ->acceptedFileTypes(['application/pdf']),
+                                ->acceptedFileTypes(['application/pdf'])
+                                ->required(),
                         ]),
                     Card::make()
                         ->schema([
@@ -87,9 +88,12 @@ class ChecklistResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('location.name'),
-                Tables\Columns\TextColumn::make('user.name'),
+                Tables\Columns\TextColumn::make('location.name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('user.name')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('date')
+                    ->searchable()
                     ->date(),
                 Tables\Columns\IconColumn::make('is_sign')
                     ->boolean(),

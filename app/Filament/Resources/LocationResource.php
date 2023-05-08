@@ -39,8 +39,10 @@ class LocationResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('company.name'),
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('company.name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('user.name'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
